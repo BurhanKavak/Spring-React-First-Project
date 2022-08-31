@@ -1,20 +1,6 @@
-import React, { useEffect, useState } from "react";
-import EmployeeService from "../services/EmployeeService";
+import React from "react";
 
-function EmployeeComponent() {
-  const [employees, setEmployees] = useState([]);
-
-  useEffect(() => {
-    getEmployees();
-  }, []);
-
-  const getEmployees = () => {
-    EmployeeService.getEmployees().then((resp) => {
-      setEmployees(resp.data);
-      console.log(resp.data);
-    });
-  };
-
+function EmployeeComponent({ employees }) {
   return (
     <div className="container">
       <h1 className="text-center">Employees List</h1>
@@ -25,6 +11,7 @@ function EmployeeComponent() {
             <th>Employee First Name</th>
             <th>Employee Last Name</th>
             <th>Employee Email</th>
+            <th>Company</th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +21,7 @@ function EmployeeComponent() {
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
               <td>{employee.email}</td>
+              <td>{employee.company.companyName}</td>
             </tr>
           ))}
         </tbody>

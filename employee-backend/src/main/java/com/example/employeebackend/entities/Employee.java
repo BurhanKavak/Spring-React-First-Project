@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employee_id")
     private long id;
     @Column(name = "firstName",nullable = false)
     private String firstName;
@@ -18,4 +19,8 @@ public class Employee {
     private String lastName;
     @Column(name = "email")
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 }

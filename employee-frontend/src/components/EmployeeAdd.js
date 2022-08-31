@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import EmployeeService from "../services/EmployeeService";
 
-function EmployeeAdd() {
+function EmployeeAdd({ setRefresh, refresh }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [companyId, setCompanyId] = useState(0);
 
   const handleAdd = () => {
     const employee = {
       firstName,
       lastName,
       email,
+      companyId,
     };
     EmployeeService.postEmployees(employee)
       .then((resp) => resp.data)
       .then((resp) => {
+        setRefresh(!refresh);
         console.log(resp);
       });
   };
@@ -31,6 +34,10 @@ function EmployeeAdd() {
   const onEmailChange = (e) => {
     console.log(e.target.value);
     setEmail(e.target.value);
+  };
+  const onCompanyIdChange = (e) => {
+    console.log(e.target.value);
+    setCompanyId(e.target.value);
   };
 
   return (
@@ -66,6 +73,15 @@ function EmployeeAdd() {
                 onChange={(e) => onEmailChange(e)}
               />
               <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="companyId"
+                class="form-control"
+                placeholder="1"
+                onChange={(e) => onCompanyIdChange(e)}
+              />
+              <label for="floatingInput">Company Id</label>
             </div>
           </div>
 
