@@ -50,7 +50,7 @@ function EmployeeAdd({ setRefresh, refresh }) {
             placeholder="Burhan"
             onChange={(e) => onFirstNameChange(e)}
           />
-          <label for="floatingInput">First Name</label>
+          <label for="floatingInputInvalid">First Name</label>
         </div>
         <div class="form-floating mb-3">
           <div class="form-floating mb-3">

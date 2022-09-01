@@ -9,6 +9,10 @@ class EmployeeService {
   postEmployees(employee) {
     return axios.post(base_url, employee);
   }
+  deleteEmpployees(id) {
+    const url = `${base_url}/${id}`;
+    return axios.delete(url);
+  }
 }
 
 export default new EmployeeService();
