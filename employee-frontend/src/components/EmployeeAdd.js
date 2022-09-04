@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EmployeeService from "../services/EmployeeService";
+import "../css/style.css";
 
 function EmployeeAdd({ setRefresh, refresh }) {
   const [firstName, setFirstName] = useState("");
@@ -21,6 +22,7 @@ function EmployeeAdd({ setRefresh, refresh }) {
         console.log(resp);
       });
   };
+  useEffect(() => {}, [refresh]);
 
   const onFirstNameChange = (e) => {
     console.log(e.target.value);
@@ -50,7 +52,15 @@ function EmployeeAdd({ setRefresh, refresh }) {
             placeholder="Burhan"
             onChange={(e) => onFirstNameChange(e)}
           />
-          <label for="floatingInputInvalid">First Name</label>
+
+          <label className="label-style" for="floatingInputInvalid">
+            <b>
+              {" "}
+              <h5>
+                <i>First Name</i>
+              </h5>
+            </b>
+          </label>
         </div>
         <div class="form-floating mb-3">
           <div class="form-floating mb-3">
@@ -60,7 +70,13 @@ function EmployeeAdd({ setRefresh, refresh }) {
               placeholder="Kavak"
               onChange={(e) => onLastNameChange(e)}
             />
-            <label for="floatingInput">Last Name</label>
+            <label className="label-style" for="floatingInput">
+              <b>
+                <h5>
+                  <i>Last Name</i>
+                </h5>
+              </b>
+            </label>
           </div>
           <label for="floatingInput"></label>
           <div class="form-floating mb-3">
@@ -72,7 +88,13 @@ function EmployeeAdd({ setRefresh, refresh }) {
                 placeholder="burhan.kvk58@gmail.com"
                 onChange={(e) => onEmailChange(e)}
               />
-              <label for="floatingInput">Email</label>
+              <label className="label-style" for="floatingInput">
+                <b>
+                  <h5>
+                    <i>Email</i>
+                  </h5>
+                </b>
+              </label>
             </div>
             <div class="form-floating mb-3">
               <input
@@ -81,16 +103,22 @@ function EmployeeAdd({ setRefresh, refresh }) {
                 placeholder="1"
                 onChange={(e) => onCompanyIdChange(e)}
               />
-              <label for="floatingInput">Company Id</label>
+              <label className="label-style" for="floatingInput">
+                <b>
+                  <h5>
+                    <i>Company Id</i>
+                  </h5>
+                </b>
+              </label>
             </div>
           </div>
 
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-danger"
             onClick={(e) => handleAdd()}
           >
-            ADD EMPLOYEEE
+            ADD EMPLOYEE
           </button>
         </div>
       </div>

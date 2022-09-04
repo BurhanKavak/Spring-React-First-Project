@@ -1,7 +1,17 @@
 import React from "react";
 import EmployeeService from "../services/EmployeeService";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function EmployeeComponent({ employees, refresh, setRefresh }) {
+function EmployeeComponent() {
+  const [refresh, setRefresh] = useState(false);
+  const [employees, setEmployees] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    EmployeeService.getEmployees().then((resp) => setEmployees(resp.data));
+  }, [refresh]);
+
   const handleDelete = (id) => {
     EmployeeService.deleteEmpployees(id).then((resp) => {
       console.log(resp);
@@ -11,7 +21,9 @@ function EmployeeComponent({ employees, refresh, setRefresh }) {
 
   return (
     <div className="container">
-      <h1 className="text-center">Employees List</h1>
+      <h1 className="text-center" style={{ color: "#d64161" }}>
+        Employees List
+      </h1>
       <table className="table table-dark table-striped">
         <thead>
           <tr>
@@ -46,6 +58,17 @@ function EmployeeComponent({ employees, refresh, setRefresh }) {
           ))}
         </tbody>
       </table>
+      <div class="container text-center">
+        <button
+          class="btn btn-outline-danger btn-lg"
+          onClick={() => navigate("/burhan/employee/add")}
+        >
+          <b>
+            {" "}
+            <i class="bi bi-person-plus-fill">ADD</i>
+          </b>
+        </button>
+      </div>
     </div>
   );
 }
