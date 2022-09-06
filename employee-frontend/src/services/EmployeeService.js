@@ -13,6 +13,10 @@ class EmployeeService {
     const url = `${base_url}/${id}`;
     return axios.delete(url);
   }
+  updateEmployees(id, employee) {
+    const url = `${base_url}/${id}`;
+    return axios.put(url, employee);
+  }
 }
 
 export default new EmployeeService();

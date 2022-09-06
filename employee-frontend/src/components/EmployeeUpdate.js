@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
-import EmployeeService from "../services/EmployeeService";
-import "../css/style.css";
 import { useNavigate } from "react-router-dom";
+import EmployeeService from "../services/EmployeeService";
 
-function EmployeeAdd({ setRefresh, refresh }) {
+function EmployeeUpdate({ setRefresh, refresh }) {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [companyId, setCompanyId] = useState(0);
-  const navigate = useNavigate();
+  const [companyId, setCompanyId] = useState(null);
+  const [ID, setID] = useState(null);
 
-  const handleAdd = () => {
+  const handleUpdate = (id) => {
     const employee = {
       firstName,
       lastName,
       email,
       companyId,
     };
-    EmployeeService.postEmployees(employee)
+    EmployeeService.updateEmployees(id, employee)
       .then((resp) => resp.data)
       .then((resp) => {
         setRefresh(!refresh);
         console.log(resp);
       });
-    navigate("/");
   };
   useEffect(() => {}, [refresh]);
 
@@ -31,7 +30,6 @@ function EmployeeAdd({ setRefresh, refresh }) {
     console.log(e.target.value);
     setFirstName(e.target.value);
   };
-
   const onLastNameChange = (e) => {
     console.log(e.target.value);
     setLastName(e.target.value);
@@ -45,6 +43,14 @@ function EmployeeAdd({ setRefresh, refresh }) {
     setCompanyId(e.target.value);
   };
 
+  useEffect(() => {
+    // setFirstName(localStorage.getItem("firstName"));
+    // setLastName(localStorage.getItem("lastName"));
+    // setEmail(localStorage.getItem("email"));
+    // setCompanyId(localStorage.getItem("companyId"));
+    setID(localStorage.getItem("ID"));
+  }, []);
+
   return (
     <div>
       <div class="form-floating mb-3">
@@ -52,6 +58,7 @@ function EmployeeAdd({ setRefresh, refresh }) {
           <input
             type="firstName"
             class="form-control"
+            value={firstName}
             placeholder="Burhan"
             onChange={(e) => onFirstNameChange(e)}
           />
@@ -70,6 +77,7 @@ function EmployeeAdd({ setRefresh, refresh }) {
             <input
               type="lastName"
               class="form-control"
+              value={lastName}
               placeholder="Kavak"
               onChange={(e) => onLastNameChange(e)}
             />
@@ -88,6 +96,7 @@ function EmployeeAdd({ setRefresh, refresh }) {
                 type="email"
                 class="form-control"
                 id="floatingInput"
+                value={email}
                 placeholder="burhan.kvk58@gmail.com"
                 onChange={(e) => onEmailChange(e)}
               />
@@ -103,6 +112,7 @@ function EmployeeAdd({ setRefresh, refresh }) {
               <input
                 type="companyId"
                 class="form-control"
+                value={companyId}
                 placeholder="1"
                 onChange={(e) => onCompanyIdChange(e)}
               />
@@ -115,26 +125,17 @@ function EmployeeAdd({ setRefresh, refresh }) {
               </label>
             </div>
           </div>
-
           <button
             type="button"
             class="btn btn-outline-danger"
-            onClick={(e) => handleAdd()}
+            onClick={handleUpdate(ID)}
           >
-            ADD EMPLOYEE
+            UPDATE EMPLOYEE
           </button>
+          ;
         </div>
-      </div>
-      <div class="back-style">
-        <button
-          type="button"
-          class="btn btn-outline-danger "
-          onClick={() => navigate("/")}
-        >
-          <i class="bi bi-backspace-fill"> Back to list</i>
-        </button>
       </div>
     </div>
   );
 }
-export default EmployeeAdd;
+export default EmployeeUpdate;

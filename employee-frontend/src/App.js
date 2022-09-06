@@ -6,6 +6,7 @@ import EmployeeComponent from "./components/EmployeeComponent";
 import EmployeeAppBar from "./components/EmployeeAppBar";
 import { Routes, Route } from "react-router-dom";
 import CompanyList from "./components/CompanyList";
+import EmployeeUpdate from "./components/EmployeeUpdate";
 
 function App() {
   return (
@@ -32,6 +33,14 @@ function App() {
           </div>
         </div> */}
         <Route path="/burhan/companies/list" element={<CompanyList />} />
+        <Route
+          path="/burhan/employee/update"
+          element={
+            <div class="container text-center">
+              <EmployeeUpdate />
+            </div>
+          }
+        />
       </Routes>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import EmployeeService from "../services/EmployeeService";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function EmployeeComponent() {
   const [refresh, setRefresh] = useState(false);
@@ -17,6 +17,13 @@ function EmployeeComponent() {
       console.log(resp);
       setRefresh(!refresh);
     });
+  };
+  const setData = (id, firstName, lastName, email, companyId) => {
+    localStorage.setItem("ID", id);
+    // localStorage.setItem("firstName", firstName);
+    // localStorage.setItem("lastName", lastName);
+    // localStorage.setItem("email", email);
+    // localStorage.setItem("companyId", companyId);
   };
 
   return (
@@ -34,6 +41,9 @@ function EmployeeComponent() {
             <th>Company</th>
             <th>
               <i>DELETE</i>
+            </th>
+            <th>
+              <i>UPDATE</i>
             </th>
           </tr>
         </thead>
@@ -53,6 +63,25 @@ function EmployeeComponent() {
                 >
                   <i class="bi bi-trash"></i>
                 </button>
+              </td>
+              <td>
+                <Link to="/burhan/employee/update">
+                  <button
+                    onClick={() =>
+                      setData(
+                        employee.id
+                        // employee.firstName,
+                        // employee.lastName,
+                        // employee.email,
+                        // employee.company.id
+                      )
+                    }
+                    type="button"
+                    class="btn btn-outline-danger btn-lg"
+                  >
+                    <i class="bi bi-plus-circle-dotted"></i>
+                  </button>
+                </Link>
               </td>
             </tr>
           ))}
