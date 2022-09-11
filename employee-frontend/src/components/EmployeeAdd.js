@@ -8,6 +8,8 @@ function EmployeeAdd({ setRefresh, refresh }) {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [companyId, setCompanyId] = useState(0);
+  const [languagesIds, setLanguagesIds] = useState([]);
+
   const navigate = useNavigate();
 
   const handleAdd = () => {
@@ -16,6 +18,7 @@ function EmployeeAdd({ setRefresh, refresh }) {
       lastName,
       email,
       companyId,
+      languagesIds,
     };
     EmployeeService.postEmployees(employee)
       .then((resp) => resp.data)
@@ -43,6 +46,10 @@ function EmployeeAdd({ setRefresh, refresh }) {
   const onCompanyIdChange = (e) => {
     console.log(e.target.value);
     setCompanyId(e.target.value);
+  };
+  const onLanguagesIdsChange = (e) => {
+    console.log(e.target.value);
+    setLanguagesIds([e.target.value]);
   };
 
   return (
@@ -110,6 +117,24 @@ function EmployeeAdd({ setRefresh, refresh }) {
                 <b>
                   <h5>
                     <i>Company Id</i>
+                  </h5>
+                </b>
+              </label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="languagesIds"
+                class="form-control"
+                placeholder="4"
+                onChange={(e) => onLanguagesIdsChange(e)}
+              />
+              {}
+
+              <label className="label-style" for="floatingInputInvalid">
+                <b>
+                  {" "}
+                  <h5>
+                    <i>Languages</i>
                   </h5>
                 </b>
               </label>

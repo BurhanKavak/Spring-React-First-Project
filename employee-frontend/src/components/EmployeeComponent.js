@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 function EmployeeComponent() {
   const [refresh, setRefresh] = useState(false);
   const [employees, setEmployees] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,6 +41,11 @@ function EmployeeComponent() {
             <th>Employee Email</th>
             <th>Company</th>
             <th>
+              <element onClick={() => navigate("/burhan/languages/list")}>
+                Languages
+              </element>
+            </th>
+            <th>
               <i>DELETE</i>
             </th>
             <th>
@@ -55,6 +61,8 @@ function EmployeeComponent() {
               <td>{employee.lastName}</td>
               <td>{employee.email}</td>
               <td>{employee.company.companyName}</td>
+              <td>{employee.employeeLanguage[0].programmingLanguage}</td>
+
               <td>
                 <button
                   onClick={(e) => handleDelete(employee.id)}

@@ -9,6 +9,7 @@ function EmployeeUpdate({ setRefresh, refresh }) {
   const [email, setEmail] = useState("");
   const [companyId, setCompanyId] = useState(null);
   const [ID, setID] = useState(null);
+  const [languagesIds, setLanguagesIds] = useState([]);
 
   const handleUpdate = (id) => {
     const employee = {
@@ -16,6 +17,7 @@ function EmployeeUpdate({ setRefresh, refresh }) {
       lastName,
       email,
       companyId,
+      languagesIds,
     };
     EmployeeService.updateEmployees(id, employee)
       .then((resp) => resp.data)
@@ -41,6 +43,10 @@ function EmployeeUpdate({ setRefresh, refresh }) {
   const onCompanyIdChange = (e) => {
     console.log(e.target.value);
     setCompanyId(e.target.value);
+  };
+  const onLanguagesIdsChange = (e) => {
+    console.log(e.target.value);
+    setLanguagesIds([e.target.value]);
   };
 
   useEffect(() => {
@@ -124,6 +130,23 @@ function EmployeeUpdate({ setRefresh, refresh }) {
                 </b>
               </label>
             </div>
+            <div class="form-floating mb-3">
+              <input
+                type="languagesIds"
+                class="form-control"
+                placeholder="1"
+                onChange={(e) => onLanguagesIdsChange(e)}
+              />
+
+              <label className="label-style" for="floatingInputInvalid">
+                <b>
+                  {" "}
+                  <h5>
+                    <i>Languages</i>
+                  </h5>
+                </b>
+              </label>
+            </div>
           </div>
           <button
             type="button"
@@ -133,6 +156,15 @@ function EmployeeUpdate({ setRefresh, refresh }) {
             UPDATE EMPLOYEE
           </button>
           ;
+        </div>
+        <div class="back-style">
+          <button
+            type="button"
+            class="btn btn-outline-danger "
+            onClick={() => navigate("/")}
+          >
+            <i class="bi bi-backspace-fill"> Back to list</i>
+          </button>
         </div>
       </div>
     </div>

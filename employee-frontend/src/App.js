@@ -5,8 +5,10 @@ import EmployeeComponent from "./components/EmployeeComponent";
 
 import EmployeeAppBar from "./components/EmployeeAppBar";
 import { Routes, Route } from "react-router-dom";
-import CompanyList from "./components/CompanyList";
+
 import EmployeeUpdate from "./components/EmployeeUpdate";
+import CompanyList from "./components/company/CompanyList";
+import LanguageList from "./components/language/LanguageList";
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
           </div>
         </div> */}
         <Route path="/burhan/companies/list" element={<CompanyList />} />
+        <Route path="/burhan/languages/list" element={<LanguageList />} />
         <Route
           path="/burhan/employee/update"
           element={

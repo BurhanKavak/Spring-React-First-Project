@@ -3,6 +3,7 @@ package com.example.employeebackend.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -23,4 +24,9 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
+
+
+    @ManyToMany
+    @JoinTable(name = "employeeLanguage",joinColumns = @JoinColumn(name ="employee_id"),inverseJoinColumns = @JoinColumn(name = "language_id"))
+    private Set<Language> employeeLanguage;
 }

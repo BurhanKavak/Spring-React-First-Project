@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import sharingan from "../images/sharingan.png";
+
 import "../css/style.css";
 import { useNavigate } from "react-router-dom";
 
@@ -42,15 +43,33 @@ const EmployeeAppBar = () => {
                   </i>
                 </NavDropdown.Item>
               </div>
+              <div>
+                <NavDropdown.Item
+                  href="https://www.linkedin.com/in/burhan-kavak/"
+                  target="_blank"
+                >
+                  <i class="bi bi-linkedin ">
+                    {" "}
+                    <b>LinkedIn</b>
+                  </i>
+                </NavDropdown.Item>
+              </div>
+              <div>
+                <NavDropdown.Item
+                  href="https://github.com/BurhanKavak"
+                  target="_blank"
+                >
+                  <i class="bi bi-github ">
+                    {" "}
+                    <b>GitHub</b>
+                  </i>
+                </NavDropdown.Item>
+              </div>
             </NavDropdown>
-            <Nav.Link
-              href="https://www.linkedin.com/in/burhan-kavak/"
-              target="_blank"
-            >
-              <b class="bi bi-linkedin"> LinkedIn</b>
-            </Nav.Link>
-            <Nav.Link href="https://github.com/BurhanKavak" target="_blank">
-              <b class="bi bi-github"> GitHub</b>
+            <Nav.Link>
+              <element onClick={() => navigate("/burhan/languages/list")}>
+                <b class="bi bi-code-slash"> Languages</b>
+              </element>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
